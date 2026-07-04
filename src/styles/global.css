@@ -69,3 +69,12 @@ p {
 .hero-line--accent {
   color: var(--lime);
 }
+
+.decrypted-revealed {
+  color: var(--text);
+  transition: color 0.1s;
+}
+.decrypted-encrypted {
+  color: var(--lime);
+  opacity: 0.6;
+}
