@@ -250,3 +250,56 @@ class BallpitMesh extends d {
       this.setMatrixAt(i, dummy.matrix);
       if (i === 0) this.light.position.copy(dummy.position);
     }
+    this.instanceMatrix.needsUpdate = true;
+  }
+}
+
+function createBallpit(canvas, cfg={}) {
+  const app = new ThreeApp({ canvas, size: 'parent' });
+  app.renderer.toneMapping = v;
+  app.camera.position.set(0, 0, 20);
+  app.camera.lookAt(0, 0, 0);
+  app.resize();
+
+  let mesh = init(cfg);
+  const raycaster = new y();
+  const plane = new w(new a(0,0,1), 0);
+  const point = new a();
+
+  canvas.style.touchAction = 'none';
+  canvas.style.userSelect = 'none';
+
+  const pointer = createPointer({
+    domElement: canvas,
+    onMove() { raycaster.setFromCamera(pointer.nPosition, app.camera); app.camera.getWorldDirection(plane.normal); raycaster.ray.intersectPlane(plane, point); mesh.physics.center.copy(point); mesh.config.controlSphere0 = true; },
+    onLeave() { mesh.config.controlSphere0 = false; }
+  });
+
+  function init(c) {
+    if (mesh) { app.clear(); app.scene.remove(mesh); }
+    mesh = new BallpitMesh(app.renderer, c);
+    app.scene.add(mesh);
+    return mesh;
+  }
+
+  app.onBeforeRender = e => mesh.update(e);
+  app.onAfterResize = e => { mesh.config.maxX = e.wWidth/2; mesh.config.maxY = e.wHeight/2; };
+
+  return { app, get mesh() { return mesh; }, dispose() { pointer.dispose(); app.dispose(); } };
+}
+
+const Ballpit = ({ className='', followCursor=true, ...props }) => {
+  const canvasRef = useRef(null);
+  const instanceRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    instanceRef.current = createBallpit(canvas, { followCursor, ...props });
+    return () => { instanceRef.current?.dispose(); };
+  }, []);
+
+  return <canvas className={className} ref={canvasRef} style={{ width:'100%', height:'100%' }} />;
+};
+
+export default Ballpit;
