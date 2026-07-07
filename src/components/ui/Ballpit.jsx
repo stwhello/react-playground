@@ -521,9 +521,6 @@ const Ballpit = ({ className = "", followCursor = true, ...props }) => {
     canvas.style.height = "100%";
     canvas.style.display = "block";
     container.appendChild(canvas);
-
-    // Defer by one rAF so the browser lays out the canvas
-    // before Three.js reads offsetWidth/Height for renderer size.
     let rafId = requestAnimationFrame(() => {
       if (!container.isConnected) return;
       instanceRef.current = createBallpit(canvas, { followCursor, ...props });
