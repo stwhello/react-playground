@@ -27,7 +27,6 @@ export default function About() {
         <Threads color={[0.47, 0.51, 0.99]} amplitude={1.5} distance={0.3} enableMouseInteraction={true} />
       </div>
 
-      {/* Top fade */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: '120px',
         background: 'linear-gradient(to bottom, var(--bg), transparent)',
@@ -46,7 +45,6 @@ export default function About() {
           #about
         </motion.span>
 
-        {/* VariableProximity headline */}
         <div style={{ margin: 'var(--space-3) 0 var(--space-4)', cursor: 'default' }}>
           <VariableProximity
             label="I build things that move."
@@ -64,7 +62,6 @@ export default function About() {
           />
         </div>
 
-        {/* Bio */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -84,7 +81,6 @@ export default function About() {
           </p>
         </motion.div>
 
-        {/* GlareHover stat cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
