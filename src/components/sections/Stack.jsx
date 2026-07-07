@@ -38,9 +38,7 @@ const CARDS = [
 
 export default function Stack() {
   return (
-    <section id="stack" style={{ position: 'relative', minHeight: '100vh' }}>
-
-      {/* Ballpit background */}
+    <section id="stack" style={{ position: 'relative', minHeight: '100vh' }}>}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <Ballpit
           count={80}
@@ -54,24 +52,17 @@ export default function Stack() {
           lightIntensity={160}
         />
       </div>
-
-      {/* Dark overlay */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1,
         background: 'rgba(11,11,16,0.82)',
       }} />
-
-      {/* Top fade */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: '120px',
         background: 'linear-gradient(to bottom, var(--bg), transparent)',
         zIndex: 2, pointerEvents: 'none',
       }} />
-
-      {/* Content */}
       <div className="section" style={{ position: 'relative', zIndex: 3 }}>
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -86,8 +77,6 @@ export default function Stack() {
             Four categories. Every layer I work with — and a few I'm actively breaking into.
           </p>
         </motion.div>
-
-        {/* 2×2 card grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(2, 1fr)',
@@ -115,7 +104,6 @@ export default function Stack() {
                 cursor: 'default',
               }}
             >
-              {/* Card header */}
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
                 <h3 style={{
                   margin: 0,
@@ -138,8 +126,6 @@ export default function Stack() {
                   {card.symbol}
                 </span>
               </div>
-
-              {/* Description */}
               <p style={{
                 margin: 0,
                 fontSize: '0.85rem',
@@ -148,11 +134,8 @@ export default function Stack() {
               }}>
                 {card.desc}
               </p>
-
-              {/* Divider */}
               <div style={{ height: '1px', background: `rgba(${card.rgb},0.1)` }} />
 
-              {/* Tech chips */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                 {card.techs.map((tech) => (
                   <span key={tech} style={{
