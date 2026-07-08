@@ -44,7 +44,6 @@ export default function Stack() {
       id="stack"
       style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}
     >
-      {/* DotGrid background */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <DotGrid
           dotSize={5}
@@ -57,36 +56,27 @@ export default function Stack() {
           returnDuration={1.4}
         />
       </div>
-
-      {/* Overlay */}
       <div style={{
         position: 'absolute', inset: 0, zIndex: 1,
         background: 'rgba(11,11,16,0.55)',
         pointerEvents: 'none',
       }} />
-
-      {/* Top fade */}
       <div style={{
         position: 'absolute', top: 0, left: 0, right: 0, height: '120px',
         background: 'linear-gradient(to bottom, var(--bg), transparent)',
         zIndex: 2, pointerEvents: 'none',
       }} />
-
-      {/* Bottom fade */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: '100px',
         background: 'linear-gradient(to top, var(--bg), transparent)',
         zIndex: 2, pointerEvents: 'none',
       }} />
-
-      {/* Content */}
       <div style={{
         position: 'relative', zIndex: 3,
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
       }}>
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -104,8 +94,6 @@ export default function Stack() {
             My toolkit.
           </h2>
         </motion.div>
-
-        {/* FlowingMenu fills remaining height */}
         <div style={{ flex: 1, minHeight: 0 }}>
           <FlowingMenu
             items={ITEMS}
